@@ -884,3 +884,33 @@ textarea { resize: vertical; line-height: 1.65; }
   .top-actions { width: 100%; justify-content: space-between; }
   .top-link { font-size: 11.5px; padding: 7px 12px; }
 }
+
+/* ---------- 溢出与移动端修复 ---------- */
+html, body { max-width: 100%; overflow-x: hidden; }
+.app, main, .stage, .verdict, .cloud-work, .cloud-form, .record-out { min-width: 0; }
+.loc-grid, .metrics, .cards, .points, .album, .foot, .chip-grid, .intent-row { min-width: 0; }
+.loc-card, .metric, .jcard, .point, .album-item, .foot-item, .stage-head, .stage-tools,
+.brand, .brand-text, .top-actions, .status, .drop, .chip { min-width: 0; }
+.brand-text h1 { flex-wrap: wrap; }
+.loc-name, .loc-meta, .jcard .note, .rec-foot, .foot-item span, .a-note,
+.drop-title, .tip-line span, .audit span, .rec-note { overflow-wrap: anywhere; word-break: break-word; }
+
+@media (max-width: 700px) {
+  main { grid-template-columns: minmax(0, 1fr); }
+  .loc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .loc-card { padding: 10px 8px 9px; }
+  .loc-name { font-size: 12px; }
+  .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+  .metric { padding: 9px 8px; min-height: 58px; }
+  .metric .v { font-size: 15px; }
+  .metric .k { font-size: 10px; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .points { grid-template-columns: minmax(0, 1fr); }
+  .foot { grid-template-columns: minmax(0, 1fr); }
+  .stage-head { flex-direction: column; align-items: stretch; }
+  .stage-tools { justify-content: flex-start; }
+  .field.two-col { flex-direction: column; }
+  .verdict-head { flex-direction: column; align-items: flex-start; }
+  .album-item { grid-template-columns: 30px minmax(0, 1fr) auto; }
+  .rec-foot { gap: 6px; }
+}
