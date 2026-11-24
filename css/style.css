@@ -914,3 +914,39 @@ html, body { max-width: 100%; overflow-x: hidden; }
   .album-item { grid-template-columns: 30px minmax(0, 1fr) auto; }
   .rec-foot { gap: 6px; }
 }
+
+/* ---------- 对比度加固：任何场景下文字可读 ---------- */
+.sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 14, 24, 0.44) 0%, rgba(5, 12, 20, 0.26) 40%, rgba(4, 10, 18, 0.52) 100%);
+}
+.stage-head p { color: #b3c6d8; }
+.brand-text p { color: #a8bccd; }
+.mode-tag {
+  color: #b3c6d8;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(6, 18, 30, 0.4);
+}
+.status {
+  background: rgba(6, 18, 30, 0.55);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #dbe9f5;
+}
+.top-link {
+  background: rgba(6, 18, 30, 0.55);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #dbe9f5;
+}
+.btn-ghost {
+  background: rgba(6, 18, 30, 0.38);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #d3e4f2;
+}
+.metric .k { color: #a8bccd; }
+.field-label { color: #a8bccd; }
+.loc-card .loc-meta { color: #9fb4c8; }
+.foot-item span { color: #a2b7ca; }
+.audit { color: #a2b7ca; }
