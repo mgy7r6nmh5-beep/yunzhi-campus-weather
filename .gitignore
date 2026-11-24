@@ -2,4 +2,5 @@
 .codeartsdoer/
 node_modules/
 *.log
-.DS_Store
+.DS_Store_*.html
+_*.js
