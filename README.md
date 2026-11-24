@@ -2,6 +2,8 @@
 
 对照《初赛作品材料（模板 1）》骨架实现的可交互 demo，覆盖「位置级天气决策」与「云景观测记录」两条链路。
 
+在线演示：<https://mgy7r6nmh5-beep.github.io/yunzhi-campus-weather/>
+
 ## 怎么运行
 
 双击 `index.html` 即可，无需安装依赖、无需构建。
