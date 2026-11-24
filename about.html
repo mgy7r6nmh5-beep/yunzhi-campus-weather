@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方案说明 · 云知</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --ink: #eef4fa; --ink-soft: #b3c4d6; --ink-dim: #94a9be;
+    --line: rgba(255,255,255,.14); --line-soft: rgba(255,255,255,.08);
+    --accent: #6fd2ff; --accent-2: #9be7c3; --warn: #ffc861;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); min-height: 100vh;
+    font-family: "PingFang SC","Microsoft YaHei","Noto Sans SC",-apple-system,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(1100px 700px at 78% -10%, #2b5679 0%, transparent 62%),
+      linear-gradient(180deg, #17293c 0%, #0c1725 48%, #080e16 100%);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 44px 24px 72px; }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px;
+    color: var(--ink-soft); text-decoration: none; padding: 8px 14px;
+    border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.04);
+    transition: all .2s ease;
+  }
+  .back:hover { color: #fff; border-color: rgba(111,210,255,.55); }
+  h1 { font-size: 28px; margin: 26px 0 8px; letter-spacing: 1px; }
+  h1 small { font-size: 14px; font-weight: 400; color: var(--ink-dim); margin-left: 12px; letter-spacing: 0; }
+  .lead { color: var(--ink-soft); font-size: 14.5px; line-height: 1.8; margin: 0 0 30px; }
+  section {
+    background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
+    border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; margin-bottom: 16px;
+  }
+  h2 { font-size: 15.5px; margin: 0 0 14px; display: flex; align-items: center; gap: 9px; }
+  h2::before { content: ""; width: 3px; height: 15px; border-radius: 2px; background: linear-gradient(180deg, var(--accent-2), var(--accent)); }
+  p { font-size: 13px; line-height: 1.85; color: var(--ink-soft); margin: 0 0 10px; }
+  p:last-child { margin-bottom: 0; }
+  ul { margin: 0; padding-left: 18px; }
+  li { font-size: 13px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 7px; }
+  li b { color: var(--ink); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line-soft); color: var(--ink-soft); vertical-align: top; }
+  th { color: var(--ink-dim); font-weight: 500; font-size: 11.5px; letter-spacing: .4px; }
+  td:first-child { color: var(--ink); white-space: nowrap; }
+  .note {
+    border-left: 2px solid rgba(255,200,97,.6); background: rgba(255,200,97,.08);
+    border-radius: 10px; padding: 13px 16px; font-size: 12.5px; line-height: 1.8; color: #ffe2a6;
+  }
+  .note b { color: #fff; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .badge {
+    font-size: 11.5px; padding: 5px 11px; border-radius: 999px;
+    border: 1px solid rgba(155,231,195,.35); color: #b5f0d4; background: rgba(155,231,195,.08);
+  }
+  footer { margin-top: 26px; font-size: 11.5px; color: var(--ink-dim); line-height: 1.8; }
+  @media (max-width: 640px) {
+    .wrap { padding: 26px 15px 48px; }
+    h1 { font-size: 22px; }
+    h1 small { display: block; margin: 8px 0 0; }
+    section { padding: 17px 16px; border-radius: 15px; }
+    table { font-size: 11.5px; }
+    th, td { padding: 7px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">← 返回应用</a>
+
+  <h1>云知<small>校园气象生活助手 · 方案说明</small></h1>
+  <p class="lead">
+    把实时气象数值与校园位置知识同时交给判断层，输出「现在该做什么」，并把一次观云变成可保存、可复用的结构化观测记录。
+    页面本身就是可运行原型，位置、意图、云型均可直接切换。
+  </p>
+
+  <section>
+    <h2>两条链路</h2>
+    <ul>
+      <li><b>短时天气提醒</b>：位置 + 活动意图 → 取数 → 注入位置知识 → 输出一句结论、三张判断卡、一条位置提示与数据来源。</li>
+      <li><b>云景打卡记录</b>：云型 + 拍摄信息 + 描述 → 四要素（云底参照、光线测光、形态判别、时间地点方位）+ 50 字内笔记 + 1~2 个标签。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>三条工程约束</h2>
+    <ul>
+      <li><b>数值只来自数据源</b>：气象数值由接口传入，输出层不产出、不复述任何数值。结论区下方的「输出校验」会实时扫描阿拉伯数字、中文数字与「数字 + 单位」组合，命中非白名单即判定失败。</li>
+      <li><b>知识外置，不进权重</b>：16 处位置各自的风感、暴晒、湿滑修正因子与提示文案独立配置，新增位置只改配置表，无需重训模型。</li>
+      <li><b>降级即保守</b>：数据源不可用时白名单置空，输出保守建议并标注原因，不做数值推测。右上角「模拟接口失败」可直接验证这条路径。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>华为云产品对应关系</h2>
+    <table>
+      <thead><tr><th>环节</th><th>产品能力</th><th>当前实现</th></tr></thead>
+      <tbody>
+        <tr><td>需求理解 / 代码生成</td><td>CodeArts 码道代码智能体</td><td>已使用，产出页面与规则引擎</td></tr>
+        <tr><td>气象数据</td><td>盘古气象（托管服务）</td><td>原型阶段用公开接口，接入方案已设计</td></tr>
+        <tr><td>模型托管</td><td>ModelArts 自定义模型服务</td><td>待接入，当前由规则引擎生成</td></tr>
+        <tr><td>图像与权重存储</td><td>OBS</td><td>待接入</td></tr>
+        <tr><td>记录持久化</td><td>RDS</td><td>原型用浏览器本地存储</td></tr>
+        <tr><td>缓存与降级</td><td>Redis</td><td>原型用本地缓存模拟 stale 回退</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>当前状态与边界</h2>
+    <p>
+      这是面向初赛的可交互原型：判断逻辑、数值审计、位置知识注入、云景记录与追问机制均为真实实现；
+      文案生成目前由规则引擎完成，<b>尚未接入大模型推理</b>。云型由用户手动选择，正式版由图像分类给出候选与置信度。
+    </p>
+    <div class="note">
+      <b>数据源说明</b>：数值来自公开气象接口，部分网络环境下可能不可达。此时页面会明确标注「示例数据 · 非实时」或「过期缓存」，
+      不会把示例值伪装成实测值。
+    </div>
+    <div class="badges">
+      <span class="badge">16 处校园位置</span>
+      <span class="badge">6 类云型</span>
+      <span class="badge">零数值输出</span>
+      <span class="badge">降级可验证</span>
+      <span class="badge">移动端适配</span>
+    </div>
+  </section>
+
+  <footer>
+    云知 · 校园气象生活助手　|　本页面为参赛作品原型，用于方案演示与功能验证。
+  </footer>
+
+</div>
+</body>
+</html>
